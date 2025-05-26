@@ -9,7 +9,7 @@ app = FastAPI()
 def minha_request(id: int):
     cad = ler_cadastro(id)
     if cad:
-        return{"mensagem": f"Olá, {cad['nome']}, você tem {cad['idade']}!"}
+        return{"mensagem": f"Olá, {cad['nome']}, você tem {cad['idade']} anos!"}
     return{"mensagem": "Cadastro não encontrado"}
 
 uvicorn.run(

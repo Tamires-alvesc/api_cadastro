@@ -14,10 +14,10 @@ def ler_cadastro(id):
         }
         lista.append(cad)
 
-        for cad in lista:
-            if cad["id"] == id:
-                return cad
-        return None
+    for cad in lista:
+        if cad["id"] == id:
+            return cad
+    return None
 
 
 
