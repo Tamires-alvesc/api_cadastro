@@ -12,19 +12,19 @@ def minha_request(id: int):
         return{"mensagem": f"Olá, {cad['nome']}, você tem {cad['idade']} anos!"}
     return{"mensagem": "Cadastro não encontrado"}
 
-@app.get("/novo_cadastro/")
+@app.post("/novo_cadastro/")
 def inserir_novo_cadastro(nome: str,idade: int):
     cad_novo = inserir_cadastro(nome,idade)
     if cad_novo:
         return{"mensagem": f"Inserido o cadastro de {nome}, que tem {idade} anos!"}
     return{"mensagem": "Não foi possível inserir o cadastro"}
 
-@app.get("/alterar_cadastro/{id}")
+@app.put("/alterar_cadastro/{id}")
 def modificar_um_cadastro(id: int, nome: str, idade: int):
     resultado = modificar_cadastro(id,nome,idade)
     return resultado
 
-@app.get("/excluir_cadastro/{id}")
+@app.delete("/excluir_cadastro/{id}")
 def excluir_um_cadastro(id: int):
     exclusao = excluir_cadastro(id)
     if exclusao:
