@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from funcoes import ler_cadastro, inserir_cadastro, modificar_cadastro
+from funcoes import ler_cadastro, inserir_cadastro, modificar_cadastro, excluir_cadastro
 
 
 app = FastAPI()
@@ -23,6 +23,15 @@ def inserir_novo_cadastro(nome: str,idade: int):
 def modificar_um_cadastro(id: int, nome: str, idade: int):
     resultado = modificar_cadastro(id,nome,idade)
     return resultado
+
+@app.get("/excluir_cadastro/{id}")
+def excluir_um_cadastro(id: int):
+    exclusao = excluir_cadastro(id)
+    if exclusao:
+        return {"mensagem": f"Cadastro de id {id} excluído com sucesso!"}
+    return{"mensagem": "Não foi possível excluir o cadastro"}
+
+
 
 uvicorn.run(
     app = app

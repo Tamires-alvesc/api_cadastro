@@ -61,3 +61,25 @@ def modificar_cadastro(id,nome,idade):
             return{"mensagem": f"Dados do cadastro atualizados com sucesso"}
     else:
         return{"mensagem": "Cadastro não encontrado"}
+    
+
+def excluir_cadastro(id):
+    cadastro = ler_cadastro(id)
+    if cadastro:
+        with open("cadastros.csv", "r") as arquivo:
+            linhas = arquivo.readlines()        
+        conteudo_atualizado = []
+        for linha in linhas:
+            if linha.strip() == "":
+                continue
+            partes = linha.strip().split(',')
+            if int(partes[0]) != id:
+                conteudo_atualizado.append(linha.strip()) 
+            
+        with open("cadastros.csv", "w") as arquivo:
+            conteudo = "\n".join(conteudo_atualizado) + "\n"
+            arquivo.write(conteudo)
+
+            return{"mensagem": f"Cadastro id {id} apagado com sucesso"}
+    else:
+        return{"mensagem": "Cadastro não encontrado"}
